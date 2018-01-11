@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}dashbord{% endblock %}
+{% block content %}
+<h2>Dashbord</h2>
+ようこそ、{{ user_name }} さん
+<form method="get" action="">
+    <input type="submit" value="ログアウト" onClick="form.action='/logout/'">
+</form>
+{% endblock %}

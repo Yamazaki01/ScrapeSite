@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+<!--タイトル-->
+{% block title %}top{% endblock %}
+
+{% block html_header %}
+<script>
+function header_field_add()
+{
+    var table_element = document.createElement("tr");
+    table_element.innerHTML =
+        '<tr>' +
+            '<th><input type="text" name="headers[]" value=""></th>' +
+            '<th width="100">：</th>' +
+            '<th><input type="text" name="field_value[]" value=""></th>' +
+        '</tr>';
+    var parent_object = document.getElementById("header");
+    parent_object.appendChild(table_element);
+}
+function url_add()
+{
+    var table_element = document.createElement("tr");
+    table_element.innerHTML =
+        '<tr>' +
+            '<th><input type="text" name="url[]" value=""></th>' +
+        '</tr>';
+    var parent_object = document.getElementById("urls");
+    parent_object.appendChild(table_element);
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<h2>top</h2>
+ようこそ、{{ user_name }} さん
+<form method="get" action="">
+    <input type="submit" value="ログアウト" onClick="form.action='/logout/'">
+</form>
+<br/>
+<br/>
+<form method="" action="">
+    <hr><br/>
+    <table id="urls" width="300" cellspacing="0" cellpadding="5" bordercolor="#333333">
+        <tr>
+            <th>URL</th>
+        </tr>
+        <tr>
+            <th><input type="text" name="target_url" value="{{ target_url }}"></th>
+        </tr>
+    </table>
+<!--    <table>
+        <tr>
+            <th><input type="button" onclick="url_add();" value="追加"></th>
+        </tr>
+    </table>-->
+    <hr><br/>
+        <table id="headers" width="300" cellspacing="0" cellpadding="5" bordercolor="#333333">
+        <tr>
+            <th>ヘッダ</th>
+        </tr>
+        <tr>
+            <th><textarea name="headers" rows="4" cols="40">{{ headers }}</textarea></th>
+        </tr>
+    </table>
+    <!--<table>
+        <tr>
+            <th><input type="button" onclick="header_field_add();" value="追加"></th>
+        </tr>
+    </table>-->
+    <hr><br/>
+    <table width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
+        <tr>
+            <th>ウェイト：</th>
+            <th><input type="text" id="wait_sec" name="wait_sec" value="{{ wait_sec }}"></th>
+        </tr>
+    </table>
+    <br/>
+    <hr><br/>
+    <table width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
+        <tr>
+            <th>取得文字列：</th>
+            <th><input type="text" name="re_str" value="{{ re_str }}"></th>
+        </tr>
+    </table>
+    <br/>
+    <hr>
+    <input formmethod="post" type="submit" value="スクレイピングする" onClick="form.action='/scraping/'"></th>
+</form>
+<br/>
+<br/>
+<br/>
+<table id="validate_results" width="300" cellspacing="0" cellpadding="5" bordercolor="#333333">
+    <tr>
+        <th>実行結果：</th>
+    </tr>
+    <tr>
+        <th>
+            {% for val in validate_results %}
+                {{ val }}
+            {% endfor %}
+        </th>
+    </tr>
+</table>
+<br/>
+<br/>
+<br/>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<h2>Login</h2>
+<form method="post" action="">
+    <p>ユーザ：    <input type="text" id="user_name" name="user_name"></p>
+    <p>パスワード：<input tyep="password" id="user_pass" name="user_pass"></p>
+    <input type="submit" value="ログイン" onClick="form.action='/login/'">
+    <input type="submit" value="新規作成" onClick="form.action='/add/user/'">
+</form>
+{{ msg }}
+{% endblock %}
